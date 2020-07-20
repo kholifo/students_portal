@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,7 +8,7 @@ class Group extends Model
 {
     protected $fillable = ['name'];
 
-    public function student()
+    public function students()
     {
         return $this->hasMany(Student::class);
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Student_mark extends Model
+class StudentMark extends Model
 {
     protected $fillable = ['mark' , 'student_id' , 'subject_id'];
 
