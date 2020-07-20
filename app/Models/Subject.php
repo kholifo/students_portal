@@ -10,6 +10,6 @@ class Subject extends Model
 
     public function student_marks()
     {
-        return $this->hasMany(Student_mark::class);
+        return $this->hasMany(StudentMark::class);
     }
 }
