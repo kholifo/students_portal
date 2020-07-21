@@ -13,6 +13,7 @@ class Student extends Model
     {
         return $this->belongsTo(Group::class);
     }
+
     public function student_marks()
     {
         return $this->hasMany(StudentMark::class);

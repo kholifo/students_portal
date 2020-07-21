@@ -5,7 +5,7 @@ namespace App\Http\Requests\Group;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreGroup extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,7 @@ class StoreGroup extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required',
-                'min:3',
-                Rule::unique('groups'),
-            ]
+            'name' => 'required|min:3', Rule::unique('groups'),
         ];
-
     }
 }

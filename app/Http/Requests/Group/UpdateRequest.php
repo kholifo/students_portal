@@ -5,7 +5,7 @@ namespace App\Http\Requests\Group;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateGroup extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,7 @@ class UpdateGroup extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required',
-                'min:3',
-                Rule::unique('groups')->ignore($this->group->id),
-            ],
+            'name' => 'required|min:3', Rule::unique('groups')->ignore($this->group->id),
         ];
-
     }
 }
