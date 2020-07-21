@@ -6,6 +6,14 @@
             <a href="{{ route('groups.create') }}" class="btn btn-info">New group</a>
         </div>
         <table class="table">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name of group</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
             <tbody>
             @foreach($groups as $group)
                 <tr>
