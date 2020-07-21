@@ -5,13 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\Student;
-<<<<<<< HEAD
 use App\Http\Requests\Group\StoreRequest;
 use App\Http\Requests\Group\UpdateRequest;
-=======
-use App\Http\Requests\Group\StoreGroup;
-use App\Http\Requests\Group\UpdateGroup;
->>>>>>> 6c6b96bac8ba350863df67b89ae5068aeddca04b
 
 class GroupController extends Controller
 {

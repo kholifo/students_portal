@@ -33,7 +33,6 @@
             @endforeach
             </tbody>
         </table>
-
         {{$groups->links()}}
         <div>
 @endsection
