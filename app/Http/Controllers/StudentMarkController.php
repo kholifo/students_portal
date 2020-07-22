@@ -18,15 +18,18 @@ class StudentMarkController extends Controller
 
     public function update(UpdateRequest $request, Student $student)
     {
-        foreach ($request->marks as $key => $value)
-        {
-            $mark = [
-                'student_id'=> $student->id,
-                'subject_id' => $key,
-            ];
-            StudentMark::updateOrcreate($mark, ['mark' => $value]);
+        foreach ($request->marks as $subjectId => $mark) {
+            StudentMark::updateOrCreate(
+                [
+                    'student_id' => $student->id,
+                    'subject_id' => $subjectId,
+                ],
+                [
+                    'mark' => $mark,
+                ]
+            );
         }
 
-        return redirect()->route('students.index');
+        return redirect("students/{$student->id}");
     }
 }

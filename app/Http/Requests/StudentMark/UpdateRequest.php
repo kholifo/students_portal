@@ -24,9 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            "marks" => [
-                'array'
-            ],
+            "marks" => 'array',
             "marks.*" => 'nullable|integer|between: 0,5',
         ];
     }

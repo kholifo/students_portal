@@ -48,7 +48,7 @@ class StudentController extends Controller
     {
         $student->update($request->validated());
 
-        return redirect()->route('students.index');
+        return redirect("students/{$student->id}");
     }
 
     public function destroy(Student $student)

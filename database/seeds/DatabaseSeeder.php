@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             SubjectsTableSeeder::class,
             GroupsTableSeeder::class,
             StudentsTableSeeder::class,
-            StudentMarksTableSeeder::class,
         ]);
     }
 }
