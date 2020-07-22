@@ -18,3 +18,13 @@ Route::get('/', function () {
 });
 
 Route::resource('/groups', 'GroupController');
+
+Route::resource('/subjects', 'SubjectController');
+
+Route::resource('/students', 'StudentController');
+
+Route::prefix('marks')->name('marks.')->group(function () {
+    Route::get('{student}/edit', 'StudentMarkController@edit')->name('edit');
+    Route::put('{student}/update', 'StudentMarkController@update')->name('update');
+});
+

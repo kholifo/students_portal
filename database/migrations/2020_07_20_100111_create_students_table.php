@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->date('birthday');
-            $table->foreignId('group_id')->constrained();
+            $table->foreignId('group_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
