@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Models\Subject;
 use App\Http\Requests\Student\StoreRequest;
 use App\Http\Requests\Student\UpdateRequest;
+use App\Http\Requests\Student\MarkStoreRequest;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -48,7 +49,7 @@ class StudentController extends Controller
     {
         $student->update($request->validated());
 
-        return redirect("students/{$student->id}");
+        return redirect()->route("students.show", $student->id);
     }
 
     public function destroy(Student $student)
@@ -58,36 +59,30 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
-    public function mark_create(Student $student)
+    public function markCreate(Student $student)
     {
         $subjects = Subject::all();
 
         return view('marks.create', compact('student', 'subjects'));
     }
 
-    public function mark_store(Request $request, Student $student)
+    public function markStore(MarkStoreRequest $request, Student $student)
     {
-        $subject_id = $request->subject_id;
+        $request->validated();
+        $student->subjects()->attach($request->subject_id, ['mark' => $request->mark]);
 
-        if($student->subjects->contains($subject_id)){
-            return redirect("students/{$student->id}")
-                ->with('Have already exists!');
-        }else{
-            $student->subjects()->attach($subject_id, ['mark' => $request->mark]);
-        }
-
-        return redirect("students/{$student->id}");
+        return redirect()->route("students.show", $student->id);
     }
 
-    public function mark_edit(Student $student, Request $request, $id)
+    public function markEdit(Student $student, Request $request, $id)
     {
         return view('marks.edit', compact('student', 'id'));
     }
 
-    public function mark_update(Request $request, Student $student, $id)
+    public function markUpdate(Request $request, Student $student, $id)
     {
         $student->subjects()->syncWithoutDetaching([$id => ['mark' => $request->mark]]);
 
-        return redirect("students/{$student->id}");
+        return redirect()->route("students.show", $student->id);
     }
 }
