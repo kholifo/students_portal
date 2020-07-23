@@ -24,10 +24,13 @@ class MarkStoreRequest extends FormRequest
      */
     public function rules()
     {
+        $student_id = request('student');
 
         return [
             'mark' => 'nullable|integer|between: 0,5',
-            "subject_id" => 'required|unique:student_subject'
-        ];
+            "subject_id" => Rule::unique('student_subject')
+                ->where(function ($query) use ($student_id) {
+                $query->where('student_id', $student_id->id);
+            })];
     }
 }
