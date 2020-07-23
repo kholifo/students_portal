@@ -22,7 +22,9 @@ Route::resource('/subjects', 'SubjectController');
 Route::resource('/students', 'StudentController');
 
 Route::prefix('students')->name('marks.')->group(function () {
-    Route::get('{student}/marks/edit', 'MarkController@edit')->name('edit');
-    Route::put('{student}/marks/update', 'MarkController@update')->name('update');
+    Route::get('{student}/marks/create', 'StudentController@mark_create')->name('create');
+    Route::post('{student}/marks/', 'StudentController@mark_store')->name('store');
+    Route::get('{student}/marks/edit/{subject}', 'StudentController@mark_edit')->name('edit');
+    Route::put('{student}/marks/edit/{subject}', 'StudentController@mark_update')->name('update');
 });
 

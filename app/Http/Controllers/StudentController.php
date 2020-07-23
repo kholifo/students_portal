@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Group;
+use App\Models\Subject;
 use App\Http\Requests\Student\StoreRequest;
 use App\Http\Requests\Student\UpdateRequest;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -54,5 +56,38 @@ class StudentController extends Controller
         $student->delete();
 
         return redirect()->route('students.index');
+    }
+
+    public function mark_create(Student $student)
+    {
+        $subjects = Subject::all();
+
+        return view('marks.create', compact('student', 'subjects'));
+    }
+
+    public function mark_store(Request $request, Student $student)
+    {
+        $subject_id = $request->subject_id;
+
+        if($student->subjects->contains($subject_id)){
+            return redirect("students/{$student->id}")
+                ->with('Have already exists!');
+        }else{
+            $student->subjects()->attach($subject_id, ['mark' => $request->mark]);
+        }
+
+        return redirect("students/{$student->id}");
+    }
+
+    public function mark_edit(Student $student, Request $request, $id)
+    {
+        return view('marks.edit', compact('student', 'id'));
+    }
+
+    public function mark_update(Request $request, Student $student, $id)
+    {
+        $student->subjects()->syncWithoutDetaching([$id => ['mark' => $request->mark]]);
+
+        return redirect("students/{$student->id}");
     }
 }
