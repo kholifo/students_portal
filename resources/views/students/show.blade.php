@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container col-6 py-2">
+    <div class="container col-8 py-3">
         <table class="table py-2">
             <h3>{{ $student->name }}</h3>
             <p>{{ $student->group->name }}</p>
