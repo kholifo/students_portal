@@ -31,9 +31,7 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        $studentMark = $student->student_marks()
-            ->with('subject')
-            ->get();
+        $studentMark = $student->subjects;
 
         return view('students.show', compact('student', 'studentMark'));
     }

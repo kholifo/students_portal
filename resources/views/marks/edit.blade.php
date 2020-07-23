@@ -6,10 +6,7 @@
             @csrf
             @foreach($subjects as $subject)
                 <label>Subject: {{ $subject->name }}</label>
-                <input class="form-control" type="number" min="0" max="5" name="marks[{{ $subject->id }}]"
-                            value={{ $student->student_marks
-                                   ->firstWhere('subject_id', $subject->id)
-                                   ->mark ?? ''}}>
+                <input class="form-control" type="number" min="0" max="5" name="mark[{{ $subject->id }}]">
             @endforeach
             <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
         </form>

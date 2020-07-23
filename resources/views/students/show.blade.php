@@ -13,8 +13,8 @@
             <tbody>
             @foreach($studentMark as $mark)
                 <tr>
-                <td>{{ $mark->subject->name }}</td>
-                <td>{{ $mark->mark }}</td>
+                <td>{{ $mark->name }}</td>
+                <td>{{ $mark->pivot->mark }}</td>
                 </tr>
             @endforeach
             </tbody>
