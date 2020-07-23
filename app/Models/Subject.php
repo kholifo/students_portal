@@ -8,8 +8,9 @@ class Subject extends Model
 {
     protected $fillable = ['name'];
 
-    public function student_marks()
+    public function students()
     {
-        return $this->hasMany(StudentMark::class);
+        return $this->belongsToMany('App\Models\Student')
+            ->withPivot('mark');
     }
 }
