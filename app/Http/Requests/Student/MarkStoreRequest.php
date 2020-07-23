@@ -24,10 +24,10 @@ class MarkStoreRequest extends FormRequest
      */
     public function rules()
     {
-//        dd(1);
+
         return [
-            "subject_id" => 'required|unique:student_subject',
-            'mark' => 'nullable|integer|between: 0,5'
+            'mark' => 'nullable|integer|between: 0,5',
+            "subject_id" => 'required|unique:student_subject'
         ];
     }
 }
